@@ -12,6 +12,8 @@
 
 from yalafi.defs import Macro, InitModule
 
+from yalafi.packages import glossaries
+
 require_packages = ['glossaries']
 
 def init_module(parser, options, position):
@@ -23,6 +25,8 @@ def init_module(parser, options, position):
 
         Macro(parms, '\\newabbreviation', args='AAA',
                                             repl=r'\newacronym{#1}{#2}{#3}'),
+        Macro(parms, '\\glsxtrfull', args='OA', repl=glossaries.h_gls('text', [])),
+        Macro(parms, '\\Glsxtrfull', args='OA', repl=glossaries.h_gls('text', [glossaries.cap_first])),
 
     ]
 
