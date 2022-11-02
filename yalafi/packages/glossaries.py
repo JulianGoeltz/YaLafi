@@ -78,8 +78,8 @@ def init_module(parser, options, position):
         Macro(parms, '\\Glstext', args='OA', repl=h_gls('text', [cap_first])),
         Macro(parms, '\\GLStext', args='OA', repl=h_gls('text', [cap_all])),
 
-        Macro(parms, '\\longnewglossaryentry', args='AAA', repl=h_newacronym),
-        Macro(parms, '\\newacronym', args='AAA', repl=h_newacronym),
+        Macro(parms, '\\longnewglossaryentry', args='OAAA', repl=h_newacronym),
+        Macro(parms, '\\newacronym', args='OAAA', repl=h_newacronym),
         Macro(parms, '\\newglossaryentry', args='AA', repl=h_newglossaryentry),
 
         # this is for reading the .glsdefs database
@@ -118,7 +118,12 @@ def h_gls(key, mods):
     return f
 
 def h_newacronym(parser, buf, mac, args, delim, pos):
-    return modify_description(parser, args[2])
+    if len(args[0]) > 0:
+        tmp_firstplural = modify_description(parser, parser.parse_keyvals_dict(args[0]).get('firstplural'))
+        tmp_firstplural.append(defs.SpaceToken(tmp_firstplural[-1].pos, txt=' '))
+        return tmp_firstplural + modify_description(parser, args[3])
+    else:
+        return modify_description(parser, args[3])
 
 def h_newglossaryentry(parser, buf, mac, args, delim, pos):
     descr = parser.parse_keyvals_dict(args[1]).get('description', [])

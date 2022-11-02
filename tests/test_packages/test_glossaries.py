@@ -52,6 +52,9 @@ data_test_macros_latex = [
     (r'\longnewglossaryentry{ex}{name=example}{a sample?}', 'A sample?'),
     (r'\newacronym{pp}{ppm}{parts per million}', 'Parts per million.'),
     (r'\newacronym{pp}{ppm}{parts per million.}', 'Parts per million.'),
+    (r'\newacronym[plural=ANNs,firstplural=artificial neural networks (ANNs)]'
+     r'{ann}{ANN}{artificial neural network}',
+     'Artificial neural networks (ANNs). Artificial neural network.'),
     (r'\newacronym{pp}{ppm}{parts per million?}', 'Parts per million?'),
     (r'\newglossaryentry{ex}{name=example, description = {a sample}}',
                                                             'A sample.'),
