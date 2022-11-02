@@ -43,8 +43,10 @@ class Parameters:
         \newcommand{\addtocounter}[2]{}
         \newcommand{\ae}{æ}
         \newcommand{\author}[1]{#1.}
+        \newcommand{\bookmarksetup}[1]{}
         \newcommand{\bibitem}[1]{\item}
         \newcommand{\bibliographystyle}[1]{}
+        \newcommand{\captionsetup}[1]{}
         \newcommand{\footnotemark}[1][]{}
         \newcommand{\glssetcategoryattribute}[3]{}
         \newcommand{\hfill}{ }
@@ -64,6 +66,7 @@ class Parameters:
         \newcommand{\o}{ø}
         \newcommand{\OE}{Œ}
         \newcommand{\oe}{œ}
+        \newcommand{\PassOptionsToPackage}[2]{}
         \newcommand{\pagenumbering}[1]{}
         \newcommand{\pageref}[1]{0}
         \newcommand{\pagestyle}[1]{}
@@ -76,7 +79,7 @@ class Parameters:
         \newcommand{\refstepcounter}[1]{}
         \newcommand{\renewbibmacro}[2]{}
         \newcommand{\S}{§}
-        \newcommand{\setcounter}[2]{}
+        \newcommand{\setlength}[2]{}
         \newcommand{\ss}{ß}
         \newcommand{\stepcounter}[1]{}
         \newcommand{\setcounter}[2]{}

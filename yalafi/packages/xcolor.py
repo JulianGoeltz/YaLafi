@@ -13,7 +13,7 @@ def init_module(parser, options, position):
     macros_latex = r"""
 
         \newcommand{\color}[2][]{}
-        \newcommand{\color}[2][]{}
+        \newcommand{\colorbox}[3][]{#3}
         \newcommand{\colorlet}[2]{}
         \newcommand{\definecolor}[4][]{}
         \newcommand{\textcolor}[3][]{#3}
