@@ -19,6 +19,7 @@ load_table = {
         'inputenc',
         'listings',
         'mathtools',
+        'natbib',
         'pgfplots',
         'subfiles',
         'tikz',
