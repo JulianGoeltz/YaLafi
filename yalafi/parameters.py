@@ -98,6 +98,7 @@ class Parameters:
         \newcommand{\hfill}{ }
         \newcommand{\include}[1]{}
         \newcommand{\includeonly}[1]{}
+        \newcommand{\includepdf}[2][]{}
         \newcommand{\index}[1]{}
         \newcommand{\input}[1]{}
         \newcommand{\L}{Ł}
@@ -135,6 +136,7 @@ class Parameters:
         \newcommand{\textasciitilde}{\verb?~?}  % \~ is accent
         \newcommand{\textbackslash}{\verb?\?}   % \\ is line break
         \newcommand{\thispagestyle}[1]{}
+        \newcommand{\todo}[1]{}
         \newcommand{\vphantom}[1]{}
 
         """
@@ -143,6 +145,7 @@ class Parameters:
         #
         self.macro_defs_python = [
 
+        Macro(self, '\\addcontentsline', args='AAA', extract='#3', repl=hs.h_heading),
         Macro(self, '\\caption', args='OA', extract='#2'),
         Macro(self, '\\chapter', args='*OA', repl=hs.h_heading),
         Macro(self, '\\cite', args='OA', repl=hs.h_cite),
@@ -164,6 +167,7 @@ class Parameters:
         Macro(self, '\\providecommand', args='*AOOA', repl=hs.g_newcommand(overwrite=False)),
         Macro(self, '\\renewcommand', args='*AOOA', repl=hs.h_newcommand),
         Macro(self, '\\section', args='*OA', repl=hs.h_heading),
+        Macro(self, '\\sectionmark', args='*OA', ),
         Macro(self, '\\subsection', args='*OA', repl=hs.h_heading),
         Macro(self, '\\subsubsection', args='*OA', repl=hs.h_heading),
         Macro(self, '\\title', args='*OA', repl=hs.h_heading),
@@ -191,7 +195,9 @@ class Parameters:
         Environ(self, 'table', args='O', add_pars=False),
         Environ(self, 'tabular', args='A', add_pars=False),
         Environ(self, 'thebibliography', args='A', add_pars=True),
-        Environ(self, 'verbatim', remove=False, add_pars=True),
+        Environ(self, 'verbatim', remove=True, add_pars=True),
+        Environ(self, 'otherlanguage', remove=True, add_pars=True),
+        Environ(self, 'otherlanguage*', remove=True, add_pars=True),
 
         EquEnv(self, 'displaymath'),
         EquEnv(self, 'eqnarray'),

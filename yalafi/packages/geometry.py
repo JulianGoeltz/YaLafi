@@ -13,6 +13,7 @@ def init_module(parser, options, position):
     macros_latex = r"""
 
         \newcommand{\geometry}[1]{}
+        \newcommand{\newgeometry}[1]{}
 
     """
 
