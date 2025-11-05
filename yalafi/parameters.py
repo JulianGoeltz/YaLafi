@@ -23,9 +23,11 @@
    math material settings.
 """
 
-from yalafi.defs import Environ, EquEnv, Macro
+from yalafi.defs import Environ, EquEnv, Macro, TextToken
 from yalafi import handlers as hs
 from yalafi import scanner
+
+import sys
 
 
 class Parameters:
@@ -176,6 +178,9 @@ class Parameters:
         Macro(self, '\\usepackage', args='OA',
                             repl=hs.h_load_module(self.package_modules)),
         Macro(self, '\\vspace', args='*A', repl=' '),
+
+        Macro(self, '\\cref', args='A', repl=h_cleveref_manual),
+        Macro(self, '\\Cref', args='A', repl=h_cleveref_manual),
 
         #   \LTadd etc.
         #
@@ -627,3 +632,37 @@ class ParserLanguageSettings:
             self.lang_change_repl_vowel = lang_change_repl_vowel
         self.short_macros = short_macros
         self.active_chars = set(k[0] for k in self.short_macros.keys())
+
+
+def h_cleveref_manual(parser, buf, mac, args, delim, pos):
+    arg = "".join([i.txt for i in args[0]])
+    retval = ""
+    if arg.startswith("eq:"):
+        if ',' in arg:
+            # if mac.name[2] == "C":
+            retval = "Equations 1 and 2"
+        else:
+            retval = "Equation 1"
+    elif arg.startswith("sec:"):
+        if ',' in arg:
+            # if mac.name[2] == "C":
+            retval = "Sections 1 and 2"
+        else:
+            retval = "Section 1"
+    elif arg.startswith("fig:"):
+        if ',' in arg:
+            # if mac.name[2] == "C":
+            retval = "Figures 1 and 2"
+        else:
+            retval = "Figure 1"
+    elif arg.startswith("ch:"):
+        if ',' in arg:
+            # if mac.name[2] == "C":
+            retval = "Chapters 1 and 2"
+        else:
+            retval = "Chapters 1"
+    else:
+        print(f"cleveref command {mac.name} with argument {arg} cannot be resolved", file=sys.stderr)
+
+    ret = [TextToken(pos, retval)]
+    return ret
