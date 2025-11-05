@@ -88,6 +88,7 @@ class Parameters:
         \newcommand{\AA}{Å}
         \newcommand{\aa}{å}
         \newcommand{\AE}{Æ}
+        \newcommand{\addboldnames}[1]{}
         \newcommand{\addtocounter}[2]{}
         \newcommand{\addtolength}[2]{}
         \newcommand{\ae}{æ}
@@ -105,6 +106,7 @@ class Parameters:
         \newcommand{\l}{ł}
         \newcommand{\label}[1]{}
         \newcommand{\LaTeX}{LaTeX}
+        \newcommand{\longfullcite}[1]{[0]}
         \newcommand{\newcounter}[1]{}
         \newcommand{\newlength}[1]{}
         \newcommand{\newline}{ }
