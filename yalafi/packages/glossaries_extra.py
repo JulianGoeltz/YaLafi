@@ -23,6 +23,8 @@ def init_module(parser, options, position):
         \newcommand{\glsxtrfull}[1]{\glsxtrshort{#1} (\glsxtrlong{#1})}
         \newcommand{\Glsxtrfull}[1]{\glsxtrshort{#1} (\Glsxtrlong{#1})}
 
+        \newcommand{\glsfmtfull}[1]{\glsxtrlong{#1} (\Glsxtrshort{#1})}
+
     """
 
     macros_python = [

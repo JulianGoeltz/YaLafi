@@ -141,6 +141,7 @@ class Parameters:
         \newcommand{\textbackslash}{\verb?\?}   % \\ is line break
         \newcommand{\thispagestyle}[1]{}
         \newcommand{\todo}[1]{}
+        \newcommand{\todoRegulations}[1]{}
         \newcommand{\vphantom}[1]{}
 
         """
