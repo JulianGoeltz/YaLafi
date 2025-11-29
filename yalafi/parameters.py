@@ -97,6 +97,7 @@ class Parameters:
         \newcommand{\author}[1]{#1.}
         \newcommand{\bibitem}[1]{\item}
         \newcommand{\bibliographystyle}[1]{}
+        \newcommand{\bindlabeltotarget}[4]{}
         \newcommand{\footnotemark}[1][]{}
         \newcommand{\hfill}{ }
         \newcommand{\include}[1]{}
@@ -141,6 +142,8 @@ class Parameters:
         \newcommand{\textbackslash}{\verb?\?}   % \\ is line break
         \newcommand{\thispagestyle}[1]{}
         \newcommand{\todo}[1]{}
+        \newcommand{\todoIfTime}[1]{}
+        \newcommand{\todoin}[1]{}
         \newcommand{\todoRegulations}[1]{}
         \newcommand{\vphantom}[1]{}
 
@@ -182,6 +185,11 @@ class Parameters:
 
         Macro(self, '\\cref', args='A', repl=h_cleveref_manual),
         Macro(self, '\\Cref', args='A', repl=h_cleveref_manual),
+
+        Macro(self, '\\refManu', args='A', repl=h_cleveref_manual),
+        Macro(self, '\\RefManu', args='A', repl=h_cleveref_manual),
+        Macro(self, '\\refManusTwo', args='AA', repl=h_cleveref_manual),
+        Macro(self, '\\RefManusTwo', args='AA', repl=h_cleveref_manual),
 
         #   \LTadd etc.
         #
@@ -662,6 +670,12 @@ def h_cleveref_manual(parser, buf, mac, args, delim, pos):
             retval = "Chapters 1 and 2"
         else:
             retval = "Chapters 1"
+    elif arg.startswith("table:"):
+        if ',' in arg:
+            # if mac.name[2] == "C":
+            retval = "Tables 1 and 2"
+        else:
+            retval = "Table 1"
     else:
         print(f"cleveref command {mac.name} with argument {arg} cannot be resolved", file=sys.stderr)
 

@@ -34,6 +34,7 @@ def init_module(parser, options, position):
         Macro(parms, '\\glsxtrshort', args='OA', repl=h_gls('short', [])),
         Macro(parms, '\\Glsxtrshort', args='OA',
               repl=h_gls('short', [cap_first])),
+        Macro(parms, '\\glsfmtlong', args='OA', repl=h_gls('long', [])),
         Macro(parms, '\\glsfmtlongpl', args='OA', repl=h_gls('plural', [])),
         Macro(parms, '\\glsxtrlong', args='OA', repl=h_gls('long', [])),
         Macro(parms, '\\Glsxtrlong', args='OA',
