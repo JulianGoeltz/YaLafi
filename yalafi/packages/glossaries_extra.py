@@ -25,6 +25,8 @@ def init_module(parser, options, position):
 
         \newcommand{\glsfmtfull}[1]{\glsxtrlong{#1} (\Glsxtrshort{#1})}
 
+        \newcommand{\ifglsused}[3]{#3}
+
     """
 
     macros_python = [
