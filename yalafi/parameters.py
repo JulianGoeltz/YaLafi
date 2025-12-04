@@ -186,10 +186,10 @@ class Parameters:
         Macro(self, '\\cref', args='A', repl=h_cleveref_manual),
         Macro(self, '\\Cref', args='A', repl=h_cleveref_manual),
 
-        Macro(self, '\\refManu', args='A', repl=h_cleveref_manual),
-        Macro(self, '\\RefManu', args='A', repl=h_cleveref_manual),
-        Macro(self, '\\refManusTwo', args='AA', repl=h_cleveref_manual),
-        Macro(self, '\\RefManusTwo', args='AA', repl=h_cleveref_manual),
+        Macro(self, '\\refManu', args='OA', repl=h_cleveref_manual_wrapper1),
+        Macro(self, '\\RefManu', args='OA', repl=h_cleveref_manual_wrapper1),
+        Macro(self, '\\refManusTwo', args='OOAA', repl=h_cleveref_manual_wrapper2),
+        Macro(self, '\\RefManusTwo', args='OOAA', repl=h_cleveref_manual_wrapper2),
 
         #   \LTadd etc.
         #
@@ -643,8 +643,24 @@ class ParserLanguageSettings:
         self.active_chars = set(k[0] for k in self.short_macros.keys())
 
 
+def h_cleveref_manual_wrapper1(parser, buf, mac, args, delim, pos):
+    return h_cleveref_manual(parser, buf, mac, args[1:], delim, pos)
+
+
+def h_cleveref_manual_wrapper2(parser, buf, mac, args, delim, pos):
+    return h_cleveref_manual(parser, buf, mac, args[2:], delim, pos)
+
+
 def h_cleveref_manual(parser, buf, mac, args, delim, pos):
-    arg = "".join([i.txt for i in args[0]])
+    # print(["".join([i.txt for i in arg]) for arg in args], file=sys.stderr)
+
+    args = ["".join([i.txt for i in arg]) for arg in args]
+    # print(args, file=sys.stderr)
+    # args = [arg for arg in args if arg != ""]
+    # print(args, file=sys.stderr)
+    arg = ",".join(args)
+    # print(arg, file=sys.stderr)
+
     retval = ""
     if arg.startswith("eq:"):
         if ',' in arg:
@@ -678,6 +694,9 @@ def h_cleveref_manual(parser, buf, mac, args, delim, pos):
             retval = "Table 1"
     else:
         print(f"cleveref command {mac.name} with argument {arg} cannot be resolved", file=sys.stderr)
+
+    # if retval != "":
+    #     print("resolving worked", file=sys.stderr)
 
     ret = [TextToken(pos, retval)]
     return ret
