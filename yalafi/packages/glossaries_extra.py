@@ -24,8 +24,9 @@ def init_module(parser, options, position):
         \newcommand{\Glsxtrfull}[1]{\glsxtrshort{#1} (\Glsxtrlong{#1})}
 
         \newcommand{\glsfmtfull}[1]{\glsxtrlong{#1} (\Glsxtrshort{#1})}
+        \newcommand{\glsfmtfullpl}[1]{\glsfmtlongpl{#1} (\glsxtrshort{#1})}
 
-        \newcommand{\ifglsused}[3]{#3}
+        \newcommand{\ifglsused}[3]{#2}
 
     """
 
